@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { CommandCopy } from "./components/command-copy";
+import {
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_LOCALE,
+  SITE_NAME,
+  SITE_TITLE,
+  getSiteUrl,
+} from "../lib/site";
 
 const macosDownloadUrl =
   "https://github.com/jongwoo01/relay-voice-agent/releases/latest/download/Relay-macos-universal.zip";
@@ -77,9 +86,60 @@ const productPillars = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: SITE_NAME,
+    locale: SITE_LOCALE,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+};
+
 export default function Home() {
+  const siteUrl = getSiteUrl().toString();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        url: siteUrl,
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: SITE_NAME,
+        url: siteUrl,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: ["macOS", "Windows"],
+        description: SITE_DESCRIPTION,
+        downloadUrl: [macosDownloadUrl, windowsDownloadUrl],
+        sameAs: [githubRepoUrl],
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[var(--page-bg)] text-[var(--text-strong)] relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       
       {/* Sticky Glass Header */}
       <header className="glass-header w-full">
@@ -122,6 +182,31 @@ export default function Home() {
         <div className="absolute left-1/2 top-[500px] h-64 w-64 -translate-x-1/2 rounded-full bg-[var(--blob-1)] blur-3xl mix-blend-multiply opacity-30 animate-[float_12s_ease-in-out_infinite]" />
 
         <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pt-10 pb-10 sm:px-8 lg:px-10 lg:pt-16">
+          <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr] animate-fade-in-up">
+            <article className="notice-card">
+              <p className="eyebrow">For Judges</p>
+              <p className="mt-3 text-base leading-7 text-[var(--text-soft)]">
+                Install Gemini CLI, install the Workspace extension, download
+                Relay, then open the app and enter the judge passcode included
+                in the Devpost appendix to access the hosted session.
+              </p>
+            </article>
+            <article className="notice-card">
+              <p className="eyebrow">Public Access</p>
+              <p className="mt-3 text-base leading-7 text-[var(--text-soft)]">
+                Relay is currently opened for judges first. If you want early
+                access before the wider release, contact{" "}
+                <a
+                  className="font-semibold text-[var(--text-strong)] underline decoration-[var(--line-strong)] underline-offset-4"
+                  href="mailto:main220704@gmail.com"
+                >
+                  main220704@gmail.com
+                </a>
+                .
+              </p>
+            </article>
+          </div>
+
           <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             
             {/* Left Content */}
@@ -342,6 +427,17 @@ export default function Home() {
               Voice-first desktop control for the Google ecosystem, with Cloud
               Run orchestration, Gemini Live conversation, Vertex AI reasoning,
               and grounded Gemini CLI execution on the device.
+            </p>
+            <p className="text-sm leading-7 text-[var(--text-muted)]">
+              This landing page is currently optimized for challenge judges. If
+              you want early access before the wider release, email{" "}
+              <a
+                className="font-semibold text-[var(--text-strong)] underline decoration-[var(--line-strong)] underline-offset-4"
+                href="mailto:main220704@gmail.com"
+              >
+                main220704@gmail.com
+              </a>
+              .
             </p>
           </div>
 

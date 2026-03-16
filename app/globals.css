@@ -221,6 +221,7 @@ a {
 .step-card,
 .download-card,
 .architecture-row,
+.notice-card,
 .install-guide-card,
 .install-note,
 .command-box {
@@ -308,6 +309,13 @@ a {
 .download-card {
   border-radius: 2rem;
   padding: 1.75rem;
+}
+
+.notice-card {
+  border-radius: 1.6rem;
+  padding: 1.25rem 1.35rem;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
 }
 
 .install-guide-card {

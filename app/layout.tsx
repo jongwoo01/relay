@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope } from "next/font/google";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  getSiteUrl,
+} from "../lib/site";
 import "./globals.css";
 
 const sans = Manrope({
@@ -14,21 +20,28 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Relay | Voice Agent for the Google Ecosystem",
-  description:
-    "Relay is a desktop voice agent with a Cloud Run hosted core, Gemini Live conversation, Vertex AI reasoning, and grounded Gemini CLI execution on the user's device.",
+  metadataBase: getSiteUrl(),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Relay | Voice Agent for the Google Ecosystem",
-    description:
-      "Desktop voice control backed by a hosted cloud core and grounded local execution through Gemini CLI.",
-    siteName: "Relay",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: SITE_NAME,
     type: "website",
+    locale: "en_US",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Relay | Voice Agent for the Google Ecosystem",
-    description:
-      "Realtime voice control with a hosted cloud brain and grounded local execution.",
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 
