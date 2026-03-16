@@ -26,21 +26,21 @@ const workspaceInstallCommand =
 const installSteps = [
   {
     number: "01",
-    title: "Install Gemini CLI",
+    title: "Gemini CLI install + sign-in",
     description:
-      "Relay requires Gemini CLI because grounded local execution runs through that toolchain.",
+      "Install Gemini CLI, launch `gemini`, and complete the Gemini CLI OAuth sign-in first. Relay cannot use grounded local execution if the CLI is installed but not authenticated.",
   },
   {
     number: "02",
-    title: "Install the Workspace extension",
+    title: "Workspace ext. install + consent",
     description:
-      "Relay depends on the Workspace extension for local, workspace-aware execution on your device.",
+      "Install the Workspace extension, then complete its separate Google Workspace OAuth consent when Gemini CLI first prompts for Docs, Drive, or Gmail access. Relay needs the extension to be both installed and authorized.",
   },
   {
     number: "03",
     title: "Download Relay",
     description:
-      "After the two prerequisites are ready, download the ZIP for your OS, unzip it, and launch the app.",
+      "After Gemini CLI sign-in and Workspace extension consent are both complete, download the ZIP for your OS, unzip it, and launch Relay.",
   },
 ];
 
@@ -186,9 +186,13 @@ export default function Home() {
             <article className="notice-card">
               <p className="eyebrow">For Judges</p>
               <p className="mt-3 text-base leading-7 text-[var(--text-soft)]">
-                Install Gemini CLI, install the Workspace extension, download
-                Relay, then open the app and enter the judge passcode included
-                in the Devpost appendix to access the hosted session.
+                Install Gemini CLI and finish its OAuth sign-in, install the
+                Workspace extension, then complete the separate Google
+                Workspace OAuth consent for the extension when it first asks
+                for Docs, Drive, or Gmail access. Only after both
+                authenticated prerequisites are ready should you open Relay and
+                enter the judge passcode from the Devpost appendix to access
+                the hosted session.
               </p>
             </article>
             <article className="notice-card">
@@ -277,7 +281,9 @@ export default function Home() {
                   </h2>
                   <p className="text-[0.95rem] leading-7 text-[var(--text-soft)]">
                     This is the shortest path to a working Relay setup. Install
-                    Gemini CLI, sign in, add the Workspace extension, then download.
+                    Gemini CLI and complete its sign-in, install the Workspace
+                    extension, then finish the extension Google Workspace OAuth
+                    consent before you download Relay.
                   </p>
                 </div>
 
@@ -288,6 +294,10 @@ export default function Home() {
                       <span className="mini-badge mini-badge-strong">Gemini CLI</span>
                       <span className="mini-badge mini-badge-strong">Workspace Ext.</span>
                     </div>
+                    <p className="mt-3 text-sm leading-6 text-[var(--text-soft)]">
+                      Gemini CLI sign-in and Workspace extension consent are
+                      separate checks. Package installation alone is not enough.
+                    </p>
                   </div>
 
                   <div className="grid gap-4">
@@ -304,6 +314,11 @@ export default function Home() {
                       command={workspaceInstallCommand}
                     />
                   </div>
+                  <p className="text-sm leading-6 text-[var(--text-soft)]">
+                    Before launching Relay, open Gemini CLI once after the
+                    extension install and finish the separate Google Workspace
+                    OAuth consent flow when the extension asks for access.
+                  </p>
                 </div>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -323,9 +338,11 @@ export default function Home() {
 
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <article className="install-note">
-                    <p className="install-note-title">Why this setup exists</p>
+                    <p className="install-note-title">Authentication required</p>
                     <p className="install-note-copy text-[0.85rem]">
-                      Relay uses Gemini CLI for grounded local execution on your machine.
+                      Gemini CLI sign-in and Workspace extension Google
+                      Workspace consent must both be completed before Relay can
+                      use grounded local execution.
                     </p>
                   </article>
                   <article className="install-note">
