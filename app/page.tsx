@@ -18,6 +18,8 @@ const geminiCliInstallUrl = "https://github.com/google-gemini/gemini-cli";
 const workspaceExtensionUrl =
   "https://github.com/gemini-cli-extensions/workspace";
 const githubRepoUrl = "https://github.com/jongwoo01/relay-voice-agent";
+const youtubeDemoUrl = "https://www.youtube.com/watch?v=ItlKd59fKJc&t=9s";
+const youtubeEmbedUrl = "https://www.youtube.com/embed/ItlKd59fKJc?start=9&rel=0";
 const geminiCliInstallCommand = "npm install -g @google/gemini-cli";
 const geminiCliStartCommand = "gemini";
 const workspaceInstallCommand =
@@ -160,6 +162,9 @@ export default function Home() {
           </a>
 
           <nav className="flex flex-wrap items-center gap-3 text-sm text-[var(--text-muted)]">
+            <a className="chip-link" href="#watch-demo">
+              Watch Demo
+            </a>
             <a className="chip-link" href="#quick-start">
               Quick Start
             </a>
@@ -235,10 +240,13 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap animate-fade-in-up delay-100">
+                <a className="button-secondary" href="#watch-demo">
+                  Watch the demo
+                </a>
                 <a className="button-primary" href="#quick-start">
                   Start with install commands
                 </a>
-                <a className="button-secondary" href="#downloads">
+                <a className="button-ghost" href="#downloads">
                   Go to downloads
                 </a>
                 <a
@@ -355,6 +363,68 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <section
+            id="watch-demo"
+            className="grid gap-8 rounded-[2.2rem] border border-[rgba(255,255,255,0.68)] bg-[rgba(255,255,255,0.62)] p-6 shadow-[var(--shadow-card)] backdrop-blur-2xl animate-fade-in-up delay-300 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:p-8"
+          >
+            <div className="space-y-5">
+              <div className="space-y-3">
+                <p className="eyebrow text-blue-600">Watch Relay</p>
+                <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--text-strong)] sm:text-4xl">
+                  See the hosted session before you install anything
+                </h2>
+                <p className="text-base leading-8 text-[var(--text-soft)]">
+                  This embedded walkthrough opens at the live product segment so
+                  judges and new visitors can verify the end-to-end experience
+                  before stepping through setup.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <article className="install-note">
+                  <p className="install-note-title">Why it is here</p>
+                  <p className="install-note-copy text-[0.9rem]">
+                    The video gives immediate proof of the hosted voice flow,
+                    task handling, and local execution handoff.
+                  </p>
+                </article>
+                <article className="install-note">
+                  <p className="install-note-title">Direct link</p>
+                  <p className="install-note-copy text-[0.9rem]">
+                    Need a larger view or comments? Open the original YouTube
+                    page directly.
+                  </p>
+                </article>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  className="button-primary"
+                  href={youtubeDemoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open on YouTube
+                </a>
+                <a className="button-secondary" href="#quick-start">
+                  Continue to setup
+                </a>
+              </div>
+            </div>
+
+            <div className="relative aspect-video overflow-hidden rounded-[1.9rem] border border-white/70 bg-slate-950 shadow-[var(--shadow-card)]">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={youtubeEmbedUrl}
+                title="Relay demo video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </section>
         </div>
       </section>
 
