@@ -35,7 +35,7 @@ const productPillars = [
     ),
     title: "Desktop surface",
     description:
-      "An Electron + React desktop app built for realtime voice input, playback, live transcript, and task visibility.",
+      "An Electron + React desktop app for voice-driven Google Workspace workflows, playback, live transcript, and task visibility.",
   },
   {
     icon: (
@@ -56,7 +56,7 @@ const productPillars = [
     ),
     title: "Grounded local execution",
     description:
-      "Local work is delegated through Gemini CLI on device — results are grounded in real machine state, not hallucinated.",
+      "Local desktop actions run through Gemini CLI on device, so execution stays grounded in real machine state instead of hallucinated output.",
   },
   {
     icon: (
@@ -134,11 +134,17 @@ export default function Home() {
         "@type": "SoftwareApplication",
         name: SITE_NAME,
         url: siteUrl,
-        applicationCategory: "DeveloperApplication",
+        applicationCategory: "BusinessApplication",
         operatingSystem: ["macOS", "Windows"],
         description: SITE_DESCRIPTION,
         downloadUrl: [macosDownloadUrl, windowsDownloadUrl],
         sameAs: [githubRepoUrl],
+        featureList: [
+          "Desktop voice control for Google Workspace workflows",
+          "Hosted Gemini Live conversation",
+          "Grounded local execution through Gemini CLI",
+          "macOS and Windows desktop downloads",
+        ],
       },
     ],
   };
@@ -204,23 +210,23 @@ export default function Home() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                   </span>
-                  Voice Agent for the Google Ecosystem
+                  Desktop Voice Agent for Google Workspace
                 </p>
                 <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[4.5rem] leading-[1.18] py-2 pb-4">
-                  Install tools,{" "}
-                  download{" "}
+                  A desktop voice agent{" "}
+                  for{" "}
                   <span className="inline-block pr-[0.04em] text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                    Relay
+                    Google Workspace
                   </span>
-                  ,{" "}
+                  {" "}and{" "}
                   <br className="hidden lg:block" />
-                  and start talking.
+                  grounded local tasks.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-[var(--text-soft)] sm:text-xl">
-                  Relay is an Electron desktop app backed by a hosted Cloud Run
-                  core. Gemini Live powers the conversation, Vertex AI handles
-                  reasoning, and Gemini CLI grounds local execution on your
-                  machine.
+                  Relay is an Electron desktop app for voice-driven Google
+                  Workspace workflows and local desktop actions. Gemini Live
+                  powers the conversation, Vertex AI handles reasoning, and
+                  Gemini CLI grounds execution on your machine.
                 </p>
               </div>
 
@@ -274,11 +280,11 @@ export default function Home() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
                     </span>
-                    For Judges
+                    Judge Access
                   </span>
                 </div>
                 <h2 className="text-xl font-semibold tracking-[-0.03em] text-[var(--text-strong)] mb-3">
-                  3 steps to access the hosted session
+                  Judge setup in 3 steps
                 </h2>
                 <ol className="flex flex-col gap-3">
                   {judgeSteps.map((step) => (
@@ -387,10 +393,9 @@ export default function Home() {
                   See the hosted session before you install anything
                 </h2>
                 <p className="text-base leading-8 text-[var(--text-soft)]">
-                  This walkthrough opens at the live product segment — judges
-                  and new visitors can verify the end-to-end voice flow, task
-                  handling, and local execution handoff before stepping through
-                  setup.
+                  This walkthrough opens at the live product segment so visitors
+                  can verify the end-to-end voice workflow, task handling, and
+                  grounded local execution handoff before setup.
                 </p>
               </div>
 
@@ -515,9 +520,10 @@ export default function Home() {
           <p className="eyebrow">How It Works</p>
           <h2 className="section-title">The system boundary is clean.</h2>
           <p className="section-copy">
-            The desktop app is the user-facing surface. The hosted core owns
-            live conversation and task state. Gemini CLI on the device handles
-            grounded local execution.
+            The desktop app is the user-facing surface for Google Workspace and
+            local desktop workflows. The hosted core owns live conversation and
+            task state, while Gemini CLI on the device handles grounded local
+            execution.
           </p>
         </div>
 
@@ -553,9 +559,10 @@ export default function Home() {
               <p className="eyebrow text-[0.8rem]">Relay</p>
             </div>
             <p className="text-[0.95rem] leading-7 text-[var(--text-soft)]">
-              Voice-first desktop control for the Google ecosystem — Cloud Run
-              orchestration, Gemini Live conversation, Vertex AI reasoning, and
-              grounded Gemini CLI execution on your device.
+              Voice-first desktop control for Google Workspace workflows and
+              local tasks, powered by Cloud Run orchestration, Gemini Live
+              conversation, Vertex AI reasoning, and grounded Gemini CLI
+              execution on your device.
             </p>
             <p className="text-sm leading-7 text-[var(--text-muted)]">
               Currently in judges-first access. For early access, email{" "}
