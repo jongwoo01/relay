@@ -5,6 +5,7 @@
   --surface: #edf2fb;
   --card: rgba(255, 255, 255, 0.72);
   --card-glass: rgba(255, 255, 255, 0.45);
+  --header-height: 73px;
   --card-strong: #0f2d67;
   --text-strong: #11203d;
   --text-soft: #42506d;
@@ -26,6 +27,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--announcement-height, 61px) + var(--header-height) + 1rem);
 }
 
 body {
@@ -531,7 +533,7 @@ a {
 /* ─── Glass Header ─── */
 .glass-header {
   position: sticky;
-  top: 0;
+  top: var(--announcement-height, 61px);
   z-index: 50;
   background: rgba(244, 247, 252, 0.75);
   backdrop-filter: blur(24px);
