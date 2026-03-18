@@ -11,7 +11,7 @@ import {
 } from "../lib/site";
 
 const macosDownloadUrl =
-  "https://github.com/jongwoo01/relay-voice-agent/releases/latest/download/Relay-macos-universal.zip";
+  "https://github.com/jongwoo01/relay-voice-agent/releases/latest/download/Relay-macos-universal.dmg";
 const windowsDownloadUrl =
   "https://github.com/jongwoo01/relay-voice-agent/releases/latest/download/Relay-windows-x64.zip";
 const geminiCliInstallUrl = "https://github.com/google-gemini/gemini-cli";
@@ -93,7 +93,7 @@ const judgeSteps = [
     num: "3",
     text: (
       <>
-        <strong>Download Relay</strong> — unzip, launch, enter the passcode from the <strong>Devpost appendix</strong>
+        <strong>Download Relay</strong> — open the macOS disk image or unzip the Windows package, then launch and enter the passcode from the <strong>Devpost appendix</strong>
       </>
     ),
   },
@@ -251,7 +251,7 @@ export default function Home() {
                 {[
                   { n: "01", label: "Gemini CLI install + sign-in", desc: "Install Gemini CLI, run `gemini`, and complete OAuth sign-in before doing anything else." },
                   { n: "02", label: "Workspace ext. + consent", desc: "Install the Workspace extension, then complete its separate Google Workspace OAuth consent." },
-                  { n: "03", label: "Download Relay", desc: "With both prerequisites done, download the ZIP, unzip, and launch." },
+                  { n: "03", label: "Download Relay", desc: "With both prerequisites done, download Relay, open the macOS DMG or unzip the Windows package, and launch." },
                 ].map((step) => (
                   <article key={step.n} className="step-card group relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -455,7 +455,7 @@ export default function Home() {
               title: "macOS",
               subtitle: "Apple Silicon + Intel",
               description:
-                "Universal ZIP for Apple Silicon and Intel Macs. Unzip, then open the packaged macOS build inside.",
+                "Universal DMG for Apple Silicon and Intel Macs. Open the disk image, then launch Relay from the mounted app.",
               href: macosDownloadUrl,
               cta: "Download for macOS",
               icon: (
@@ -504,8 +504,9 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span>
-                    Unzip first. Unsigned builds may trigger a standard OS security
-                    warning on first launch — this is expected.
+                    Open the downloaded package first. macOS ships as a DMG and
+                    Windows ships as a ZIP installer bundle. A standard OS
+                    security warning can still appear on first launch.
                   </span>
                 </span>
               </div>
