@@ -6,6 +6,8 @@ import {
   SITE_TITLE,
   getSiteUrl,
 } from "../lib/site";
+import { AnnouncementBar } from "./components/announcement-bar";
+import { ScrollHeader } from "./components/scroll-header";
 import "./globals.css";
 
 const sans = Manrope({
@@ -52,7 +54,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${mono.variable} antialiased`}>{children}</body>
+      <body className={`${sans.variable} ${mono.variable} antialiased`}>
+        <AnnouncementBar />
+        <ScrollHeader />
+        {children}
+      </body>
     </html>
   );
 }
