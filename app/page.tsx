@@ -215,7 +215,7 @@ export default function Home() {
                 <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[4.5rem] leading-[1.18] py-2 pb-4">
                   A desktop voice agent{" "}
                   for{" "}
-                  <span className="inline-block pr-[0.04em] text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  <span className="inline-block pr-[0.04em] pb-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                     Google Workspace
                   </span>
                   {" "}and{" "}
