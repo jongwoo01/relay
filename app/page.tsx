@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { CommandCopy } from "./components/command-copy";
+import {
+  DownloadsRecommendationNote,
+  HeroDownloadChooser,
+  RecommendedPlatformBadge,
+} from "./components/platform-downloads";
+import type { PlatformId } from "./components/platform-downloads";
 import {
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
@@ -121,6 +128,44 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const siteUrl = getSiteUrl().toString();
+  const downloadOptions: {
+    id: PlatformId;
+    title: string;
+    subtitle: string;
+    description: string;
+    href: string;
+    cta: string;
+    icon: ReactNode;
+  }[] = [
+    {
+      id: "macos",
+      title: "macOS",
+      subtitle: "Apple Silicon + Intel",
+      description:
+        "Universal DMG for Apple Silicon and Intel Macs. Open the disk image, then launch Relay from the mounted app.",
+      href: macosDownloadUrl,
+      cta: "Download for macOS",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#1d1d1f]">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+        </svg>
+      ),
+    },
+    {
+      id: "windows",
+      title: "Windows",
+      subtitle: "x64 installer",
+      description:
+        "ZIP containing the Windows x64 installer. Unzip, then run the setup executable inside.",
+      href: windowsDownloadUrl,
+      cta: "Download for Windows",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#0078d4]">
+          <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" />
+        </svg>
+      ),
+    },
+  ];
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -183,9 +228,9 @@ export default function Home() {
             <a className="chip-link" href="#how-it-works">How It Works</a>
             <a
               className="button-primary !py-[0.55rem] !px-[1.1rem] !text-[0.82rem] !animate-none"
-              href={macosDownloadUrl}
+              href="#downloads"
             >
-              Download ↓
+              Choose Download
             </a>
           </nav>
         </div>
@@ -238,13 +283,18 @@ export default function Home() {
                   </svg>
                   Watch the demo
                 </a>
-                <a className="button-secondary" href={macosDownloadUrl}>
-                  Download for macOS
+                <a className="button-secondary" href="#downloads">
+                  Choose your platform
                 </a>
                 <a className="button-ghost" href={githubRepoUrl} target="_blank" rel="noreferrer">
                   GitHub ↗
                 </a>
               </div>
+
+              <HeroDownloadChooser
+                macosUrl={macosDownloadUrl}
+                windowsUrl={windowsDownloadUrl}
+              />
 
               {/* "How to get started" 3-step overview */}
               <div className="grid gap-4 md:grid-cols-3 pt-4 animate-fade-in-up delay-200">
@@ -294,9 +344,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ol>
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <p className="mt-5 text-[0.82rem] leading-6 text-[var(--text-muted)]">
+                  Choose the installer that matches the computer where you will
+                  run Relay.
+                </p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
                   <a
-                    className="button-primary w-full justify-center text-[0.88rem]"
+                    className="button-secondary w-full justify-center text-[0.88rem]"
                     href={macosDownloadUrl}
                   >
                     macOS Download
@@ -446,45 +500,20 @@ export default function Home() {
             Live GitHub Release assets for the current public build. If
             prerequisites are done, you are ready to launch.
           </p>
+          <DownloadsRecommendationNote />
         </div>
 
         <div className="relative z-10 grid gap-6 lg:grid-cols-2 animate-fade-in-up delay-100">
-          {[
-            {
-              id: "macos-download",
-              title: "macOS",
-              subtitle: "Apple Silicon + Intel",
-              description:
-                "Universal DMG for Apple Silicon and Intel Macs. Open the disk image, then launch Relay from the mounted app.",
-              href: macosDownloadUrl,
-              cta: "Download for macOS",
-              icon: (
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#1d1d1f]">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                </svg>
-              ),
-            },
-            {
-              id: "windows-download",
-              title: "Windows",
-              subtitle: "x64 installer",
-              description:
-                "ZIP containing the Windows x64 installer. Unzip, then run the setup executable inside.",
-              href: windowsDownloadUrl,
-              cta: "Download for Windows",
-              icon: (
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#0078d4]">
-                  <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" />
-                </svg>
-              ),
-            },
-          ].map((dl) => (
-            <article key={dl.id} id={dl.id} className="download-card group">
+          {downloadOptions.map((dl) => (
+            <article key={dl.id} id={`${dl.id}-download`} className="download-card group">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="platform-icon">{dl.icon}</div>
                   <div>
-                    <p className="text-xl font-semibold">{dl.title}</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-xl font-semibold">{dl.title}</p>
+                      <RecommendedPlatformBadge platformId={dl.id} />
+                    </div>
                     <p className="text-sm text-[var(--text-muted)]">{dl.subtitle}</p>
                   </div>
                 </div>
