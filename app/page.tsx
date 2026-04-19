@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { CommandCopy } from "./components/command-copy";
+import { HeroGooeyPhrase } from "./components/hero-gooey-phrase";
 import {
   DownloadsRecommendationNote,
   HeroDownloadChooser,
@@ -249,23 +250,43 @@ export default function Home() {
 
             {/* Left — Product value + CTAs */}
             <div className="flex flex-col gap-8">
-              <div className="space-y-5 animate-fade-in-up">
+              <div className="space-y-4 animate-fade-in-up">
                 <p className="eyebrow flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                   </span>
-                  Desktop Voice Agent for Google Workspace
+                  Voice Agent for Google Workspace
                 </p>
-                <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[4.5rem] leading-[1.18] py-2 pb-4">
-                  A desktop voice agent{" "}
-                  for{" "}
-                  <span className="inline-block pr-[0.04em] pb-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                    Google Workspace
-                  </span>
-                  {" "}and{" "}
-                  <br className="hidden lg:block" />
-                  grounded local tasks.
+                <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.03em] text-balance sm:text-5xl lg:text-[4rem] leading-[1.12] pt-1 pb-1">
+                  A voice agent for{" "}
+                  <HeroGooeyPhrase
+                    className="pr-[0.04em] pb-[0.14em] whitespace-nowrap"
+                    phraseClassName="inline-block whitespace-nowrap"
+                    sizer={
+                      <span className="inline-block whitespace-nowrap pb-[0.06em] text-[var(--text-strong)]">
+                        grounded local tasks.
+                      </span>
+                    }
+                    items={[
+                      {
+                        id: "workspace",
+                        content: (
+                          <span className="inline-block whitespace-nowrap pb-[0.06em] text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                            Google Workspace
+                          </span>
+                        ),
+                      },
+                      {
+                        id: "local-tasks",
+                        content: (
+                          <span className="inline-block whitespace-nowrap pb-[0.06em] text-[var(--text-strong)]">
+                            grounded local tasks.
+                          </span>
+                        ),
+                      },
+                    ]}
+                  />
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-[var(--text-soft)] sm:text-xl">
                   Relay is an Electron desktop app for voice-driven Google
